@@ -10,6 +10,7 @@
 .recipeName {
   font-size: 24px;
   margin-bottom: 10px;
+  color: #535253;
 }
 .recipeImage {
   max-width: 100%;
@@ -22,15 +23,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #535253;
 }
 .recipeInstructions {
   padding: 0px;
   border-radius: 5px;
-  color: #89888a;
+  color: #535253;
 }
 .recipeInstructions ol {
   margin-left: 0px;
 }
 .recipeInstructions li {
   margin: 10px 0px;
+}
+h2{
+  color: #535253;
 }
