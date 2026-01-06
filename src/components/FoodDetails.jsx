@@ -1,55 +1,52 @@
-import { useEffect, useState } from "react";
-import style from "./foodDetails.module.css";
+import { useEffect, useState, forwardRef } from "react";
 import ItemList from "./itemList";
-export default function FoodDetails({ foodId }) {
-  const [food, setFood] = useState({});
+import style from "./foodDetails.module.css";
+
+const FoodDetails = forwardRef(function FoodDetails({ foodId }, ref) {
+  const [food, setFood] = useState(null);
   const [isLoading, setLoading] = useState(true);
-  const URL = `https://api.spoonacular.com/recipes/${foodId}/information`;
-  const API_KEY = "819b6d00d4da42b883cdc8e4cfed8a27";
+  const API_KEY = import.meta.env.VITE_SPOON_KEY;
+
   useEffect(() => {
     async function foodRecipe() {
-      const res = await fetch(`${URL}?apiKey=${API_KEY}`);
-      const data = await res.json();
-      console.log(data);
-      setFood(data);
-      setLoading(false);
+      try {
+        setLoading(true);
+        const res = await fetch(
+          `/api/recipes/${foodId}/information?apiKey=${API_KEY}`
+        );
+        const data = await res.json();
+        setFood(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
     }
     foodRecipe();
   }, [foodId]);
-  return (
-    <div>
-      <div className={style.recipeCard}>
-        <h1 className={style.recipeName}>{food.title}</h1>
-        <img className={style.recipeImage} src={food.image} alt="" />
 
-        <div className={style.recipeDetails}>
-          <span>
-            <strong>⏰{food.readyInMinutes}Minutes</strong>
-          </span>
-          <span>
-            <strong>
-              {food.vegetarian ? "🥕 Vegetarian" : "🍖 Non-vegetarian"}
-            </strong>
-          </span>
-          <p>
-            <strong>Rs.{food.pricePerServing}/-</strong>
-          </p>
-        </div>
-        <h2>Incredients</h2>
-        <ItemList food={food} isLoading={isLoading} />
-        <h2>Instructions</h2>
-        <div className={style.recipeInstructions}>
-          <ol>
-            <p>
-              {isLoading
-                ? "Loading..."
-                : food.analyzedInstructions[0].steps.map((step) => (
-                    <li key={step.number}>{step.step}</li>
-                  ))}
-            </p>
-          </ol>
-        </div>
+  if (isLoading) return <p>Loading...</p>;
+  if (!food) return <p>No data found</p>;
+
+  return (
+    <div className={style.recipeCard} ref={ref}>
+      <h1 className={style.recipeName}>{food.title}</h1>
+      <img className={style.recipeImage} src={food.image} alt={food.title} />
+      <div className={style.recipeDetails}>
+        <strong>⏰ {food.readyInMinutes} min</strong>
+        <strong>{food.vegetarian ? "🥕 Vegetarian" : "🍖 Non-vegetarian"}</strong>
+        <strong>₹{food.pricePerServing?.toFixed(0)}</strong>
       </div>
+      <h2>Ingredients</h2>
+      <ItemList food={food} />
+      <h2>Instructions</h2>
+      <ol className={style.recipeInstructions}>
+        {food.analyzedInstructions?.[0]?.steps?.map(step => (
+          <li key={step.number}>{step.step}</li>
+        ))}
+      </ol>
     </div>
   );
-}
+});
+
+export default FoodDetails;

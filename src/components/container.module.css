@@ -1,3 +1,9 @@
 .parentContainer{
     display:  flex;
+    flex-direction: column;   /* mobile first */
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;  
 }

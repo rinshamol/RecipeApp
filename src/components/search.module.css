@@ -1,16 +1,29 @@
 .searchContainer {
+  width: 90%;           /* fill most of the screen on mobile */
+  max-width: 400px;     /* desktop limit */
   margin: 20px auto;
-  width: 300px;
   position: relative;
-  border: none;
-  border-bottom: red;
 }
 
 .input {
+  width: 100%;          /* fill container */
+  padding: 10px 15px;
+  font-size: 1rem;
   border: none;
-  box-shadow: 0 0 10px rgb(186, 17, 17);
   border-radius: 10px;
-  padding: 10px 30px;
-  color: black;
+  box-shadow: 0 0 10px rgb(186, 17, 17);
   outline: none;
+}
+
+/* Optional: input focus style */
+.input:focus {
+  box-shadow: 0 0 12px rgb(186, 17, 17);
+}
+
+/* Responsive font size for very small screens */
+@media (max-width: 400px) {
+  .input {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
 }

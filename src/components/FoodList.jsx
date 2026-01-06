@@ -1,11 +1,16 @@
 import FoodItem from "./FoodItem";
+import InnerContainer from "./InnerContainer";
 
-export default function FoodList({ foodData,setFoodId }) {
+export default function FoodList({ foodData, setFoodId }) {
   return (
-    <div>
+    <InnerContainer>
       {foodData.map((food) => (
-        <FoodItem setFoodId={setFoodId} key={food.id} food={food} />
+        <FoodItem
+          key={food.id}
+          food={food}
+          setFoodId={setFoodId}
+        />
       ))}
-    </div>
+    </InnerContainer>
   );
 }

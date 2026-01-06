@@ -1,4 +1,20 @@
 .innerContainer {
-  margin: 20px;
-  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;   /* mobile */
+  gap: 1.2rem;
+  padding: 1rem;
+}
+
+/* Tablet (optional – 2 items) */
+@media (min-width: 768px) {
+  .innerContainer {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+}
+
+/* Desktop / Web (4 BIG items) */
+@media (min-width: 1200px) {
+  .innerContainer {
+    grid-template-columns: repeat(4, minmax(280px, 1fr));
+  }
 }

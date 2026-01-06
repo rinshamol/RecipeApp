@@ -1,0 +1,21 @@
+.itemGrid {
+  display: grid;
+  grid-template-columns: 1fr;  /* mobile: 1 per row */
+  gap: 1rem;
+   width: 100%;
+   box-sizing: border-box;
+}
+
+/* Tablet: 2 items */
+@media (min-width: 768px) {
+  .itemGrid {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+}
+
+/* Desktop / Web: 4 items */
+@media (min-width: 1200px) {
+  .itemGrid {
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+  }
+}
