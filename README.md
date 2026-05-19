@@ -2,7 +2,7 @@
 
 A responsive Recipe Finder web app built with React and Vite, powered by the Spoonacular API. Search for any recipe and get detailed cooking instructions, ingredients, and nutritional info instantly.
 
-🔗 **Live Demo:** [recipe-app-git-main-rinshamols-projects.vercel.app](https://recipe-app-git-main-rinshamols-projects.vercel.app)
+🔗 **Live Demo:** [recipe-app-git-main-rinshamols-projects.vercel.app](https://recipe-app-one-liard.vercel.app/)
 
 
 
