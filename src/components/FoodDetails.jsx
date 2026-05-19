@@ -1,5 +1,5 @@
 import { useEffect, useState, forwardRef } from "react";
-import ItemList from "./itemList";
+import ItemList from "./ItemList";
 import style from "./foodDetails.module.css";
 
 const FoodDetails = forwardRef(function FoodDetails({ foodId }, ref) {
